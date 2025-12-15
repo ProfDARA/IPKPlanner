@@ -1,0 +1,5 @@
+{
+  "name": "Smart IPK Calc",
+  "description": "A comprehensive GPA (IPK) calculator with OCR capabilities to extract grades from transcripts (LKAM) and scenario planning for graduation targets.",
+  "requestFramePermissions": []
+}
