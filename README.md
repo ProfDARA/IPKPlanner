@@ -48,3 +48,12 @@ python -m venv .venv
 source .venv/Scripts/activate  # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
 ```
+
+Opsi build+serve (jalankan build otomatis lalu serve dari Streamlit):
+
+```bash
+# Jalankan sekali (membutuhkan Node.js di PATH)
+streamlit run streamlit_app.py -- --build --serve
+```
+
+Opsi ini akan menjalankan `npm run build` (jika tersedia) lalu memulai server statis pada `http://localhost:5000` dan menampilkan aplikasi melalui iframe di Streamlit.
