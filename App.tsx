@@ -83,7 +83,7 @@ function App() {
           <div className="flex items-center gap-4">
              <div className="hidden md:flex flex-col items-end mr-2 text-right">
                 <span className="text-xs font-bold text-slate-700">Planner & Hitung IPK dengan AI</span>
-                <span className="text-[10px] text-slate-500">Kritik & Saran: @profdara</span>
+                <span className="text-[10px] text-slate-500">Kritik dan Saran: Danang Agung Restu Aji</span>
              </div>
 
              <div className="h-8 w-px bg-slate-200 hidden md:block"></div>
