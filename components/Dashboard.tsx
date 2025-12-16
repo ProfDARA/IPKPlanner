@@ -1,6 +1,6 @@
 import React from 'react';
 import { Course, GradeDefinition } from '../types';
-import { GraduationCap, BookOpen, Calculator } from 'lucide-react';
+import { GraduationCap, BookOpen, Calculator, BarChart3 } from 'lucide-react';
 
 interface DashboardProps {
   courses: Course[];
@@ -8,7 +8,6 @@ interface DashboardProps {
 }
 
 export const Dashboard: React.FC<DashboardProps> = ({ courses, gradingScale }) => {
-  // Create a quick lookup map for values
   const gradeMap = React.useMemo(() => {
     return gradingScale.reduce((acc, curr) => {
       if (curr.enabled) acc[curr.label] = curr.value;
@@ -22,20 +21,17 @@ export const Dashboard: React.FC<DashboardProps> = ({ courses, gradingScale }) =
     let completedSks = 0;
 
     courses.forEach(c => {
-      // Logic: Only count courses that have a valid grade (not '-' or 'BL')
       if (c.includedInGpa) {
-        // If the grade is in our map (enabled), use it. otherwise ignore (or treat as 0? usually ignore if disabled)
         const val = gradeMap[c.grade];
         if (val !== undefined) {
             totalPoints += val * c.sks;
             completedSks += c.sks;
         }
       }
-      totalSks += c.sks; // Total SKS planned/taken
+      totalSks += c.sks; 
     });
 
     const ipk = completedSks > 0 ? (totalPoints / completedSks).toFixed(2) : '0.00';
-
     return { ipk, completedSks, totalSks };
   };
 
@@ -43,31 +39,37 @@ export const Dashboard: React.FC<DashboardProps> = ({ courses, gradingScale }) =
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div className="bg-indigo-600 rounded-xl p-6 text-white shadow-lg shadow-indigo-200">
-        <div className="flex items-center gap-3 mb-2 opacity-90">
-          <GraduationCap className="w-5 h-5" />
-          <span className="font-medium text-sm uppercase tracking-wider">IPK Saat Ini</span>
+      {/* Primary Card - IPK */}
+      <div className="bg-white rounded-md p-5 border-l-4 border-l-blue-700 border border-slate-200 shadow-sm flex items-center justify-between">
+        <div>
+           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">IPK Saat Ini</p>
+           <p className="text-4xl font-bold text-slate-800 tracking-tight">{stats.ipk}</p>
         </div>
-        <div className="text-4xl font-bold tracking-tight">{stats.ipk}</div>
-        <div className="mt-2 text-indigo-100 text-sm">Indeks Prestasi Kumulatif</div>
+        <div className="p-3 bg-blue-50 rounded-md">
+           <GraduationCap className="w-8 h-8 text-blue-700" />
+        </div>
       </div>
 
-      <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
-        <div className="flex items-center gap-3 mb-2 text-slate-500">
-          <BookOpen className="w-5 h-5" />
-          <span className="font-medium text-sm uppercase tracking-wider">SKS Lulus</span>
+      {/* Secondary Card - SKS Lulus */}
+      <div className="bg-white rounded-md p-5 border border-slate-200 shadow-sm flex items-center justify-between">
+         <div>
+           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">SKS Lulus</p>
+           <p className="text-3xl font-bold text-slate-700">{stats.completedSks}</p>
         </div>
-        <div className="text-3xl font-bold text-slate-800">{stats.completedSks}</div>
-        <div className="mt-2 text-slate-400 text-sm">SKS yang sudah dinilai</div>
+        <div className="p-3 bg-slate-50 rounded-md">
+           <BookOpen className="w-6 h-6 text-slate-600" />
+        </div>
       </div>
 
-      <div className="bg-white rounded-xl p-6 border border-slate-200 shadow-sm">
-        <div className="flex items-center gap-3 mb-2 text-slate-500">
-          <Calculator className="w-5 h-5" />
-          <span className="font-medium text-sm uppercase tracking-wider">Total SKS Terambil</span>
+      {/* Tertiary Card - Total SKS */}
+      <div className="bg-white rounded-md p-5 border border-slate-200 shadow-sm flex items-center justify-between">
+         <div>
+           <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Total Rencana SKS</p>
+           <p className="text-3xl font-bold text-slate-700">{stats.totalSks}</p>
         </div>
-        <div className="text-3xl font-bold text-slate-800">{stats.totalSks}</div>
-        <div className="mt-2 text-slate-400 text-sm">Termasuk mata kuliah rencana</div>
+        <div className="p-3 bg-slate-50 rounded-md">
+           <Calculator className="w-6 h-6 text-slate-600" />
+        </div>
       </div>
     </div>
   );

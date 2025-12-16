@@ -5,10 +5,10 @@ import { Course } from "../types";
 // NOTE: Ideally this comes from process.env.API_KEY, but for this demo context ensure your environment is set.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
-export const extractTranscriptData = async (base64Image: string, mimeType: string): Promise<Partial<Course>[]> => {
+export const extractTranscriptData = async (base64Data: string, mimeType: string): Promise<Partial<Course>[]> => {
   try {
     const prompt = `
-      Analyze this image of an academic transcript (LKAM). 
+      Analyze this document (Image or PDF of an academic transcript/LKAM). 
       Extract the course data into a JSON structure.
       
       Rules:
@@ -30,7 +30,7 @@ export const extractTranscriptData = async (base64Image: string, mimeType: strin
           {
             inlineData: {
               mimeType: mimeType,
-              data: base64Image
+              data: base64Data
             }
           },
           { text: prompt }
@@ -62,6 +62,6 @@ export const extractTranscriptData = async (base64Image: string, mimeType: strin
 
   } catch (error) {
     console.error("Gemini Extraction Error:", error);
-    throw new Error("Failed to extract data from image. Please try again.");
+    throw new Error("Failed to extract data. Please try again or ensure the file is clear.");
   }
 };

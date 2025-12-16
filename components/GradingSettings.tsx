@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { GradeDefinition } from '../types';
-import { Settings, ChevronDown, ChevronUp, Save, RotateCcw } from 'lucide-react';
+import { Settings, ChevronDown, ChevronUp, RotateCcw } from 'lucide-react';
 
 interface GradingSettingsProps {
   scale: GradeDefinition[];
@@ -24,34 +24,31 @@ export const GradingSettings: React.FC<GradingSettingsProps> = ({ scale, onUpdat
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-slate-200 mb-6 overflow-hidden">
+    <div className="bg-white rounded-md shadow-sm border border-slate-200 mb-6 overflow-hidden">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full px-6 py-4 flex items-center justify-between bg-slate-50 hover:bg-slate-100 transition"
+        className="w-full px-5 py-3 flex items-center justify-between bg-white hover:bg-slate-50 transition"
       >
         <div className="flex items-center gap-2 text-slate-800">
-          <Settings className="w-5 h-5 text-indigo-600" />
-          <span className="font-semibold">Konfigurasi Bobot Nilai</span>
-          <span className="text-xs font-normal text-slate-500 ml-2 hidden sm:inline-block">
-            (Sesuaikan dengan standar universitas Anda)
-          </span>
+          <Settings className="w-4 h-4 text-slate-500" />
+          <span className="font-bold text-sm uppercase tracking-wide text-slate-600">Konfigurasi Bobot Nilai</span>
         </div>
-        {isOpen ? <ChevronUp className="w-5 h-5 text-slate-400" /> : <ChevronDown className="w-5 h-5 text-slate-400" />}
+        {isOpen ? <ChevronUp className="w-4 h-4 text-slate-400" /> : <ChevronDown className="w-4 h-4 text-slate-400" />}
       </button>
 
       {isOpen && (
-        <div className="p-6 border-t border-slate-200">
-           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        <div className="p-5 border-t border-slate-200 bg-slate-50/50">
+           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
              {scale.map((grade, idx) => (
-               <div key={grade.label} className={`flex items-center gap-2 p-2 rounded border ${grade.enabled ? 'border-indigo-100 bg-indigo-50/30' : 'border-slate-100 bg-slate-50 opacity-60'}`}>
+               <div key={grade.label} className={`flex items-center gap-2 p-2 rounded border text-sm ${grade.enabled ? 'border-blue-200 bg-white shadow-sm' : 'border-slate-200 bg-slate-100 opacity-60'}`}>
                  <input 
                    type="checkbox"
                    checked={grade.enabled}
                    onChange={() => handleToggle(idx)}
-                   className="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500 cursor-pointer"
+                   className="w-3.5 h-3.5 text-blue-700 rounded border-slate-300 focus:ring-blue-500 cursor-pointer"
                  />
-                 <div className="flex-1">
-                   <span className="font-bold text-slate-700 block text-sm">{grade.label}</span>
+                 <div className="flex-1 font-bold text-slate-700">
+                   {grade.label}
                  </div>
                  <input 
                    type="number"
@@ -59,18 +56,18 @@ export const GradingSettings: React.FC<GradingSettingsProps> = ({ scale, onUpdat
                    value={grade.value}
                    onChange={(e) => handleValueChange(idx, e.target.value)}
                    disabled={!grade.enabled}
-                   className="w-16 text-right text-sm border-b border-slate-300 bg-transparent focus:border-indigo-500 outline-none"
+                   className="w-12 text-right bg-transparent border-b border-slate-300 focus:border-blue-500 outline-none font-mono"
                  />
                </div>
              ))}
            </div>
            
-           <div className="mt-6 flex justify-end">
+           <div className="mt-4 flex justify-end border-t border-slate-200 pt-3">
              <button 
                onClick={onReset}
-               className="flex items-center gap-1 px-3 py-1.5 text-slate-500 hover:text-slate-700 text-sm transition"
+               className="flex items-center gap-1.5 px-3 py-1.5 text-slate-500 hover:text-slate-800 hover:bg-white border border-transparent hover:border-slate-200 rounded text-xs transition"
              >
-               <RotateCcw className="w-4 h-4" /> Reset ke Default
+               <RotateCcw className="w-3.5 h-3.5" /> Reset Default
              </button>
            </div>
         </div>
