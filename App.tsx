@@ -257,7 +257,7 @@ function App() {
                <LayoutDashboard className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg text-white leading-tight tracking-tight">Smart IPK</span>
+              <span className="font-bold text-lg text-white leading-tight tracking-tight">Smart IPK Tracker</span>
               <span className="text-[10px] text-slate-400 font-medium tracking-wide uppercase">Aplikasi pintar untuk tracking dan analisa IPK Anda</span>
             </div>
           </div>
