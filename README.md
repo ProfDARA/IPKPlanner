@@ -10,7 +10,7 @@
 
 ## Tentang Smart IPK
 
-`Smart IPK` adalah aplikasi single-page (SPA) ringan untuk membantu mahasiswa merencanakan dan memantau IPK (Indeks Prestasi Kumulatif). Aplikasi ini memungkinkan Anda memasukkan atau mengimpor data mata kuliah, mengatur bobot nilai, dan menghitung rata‑rata IPS yang diperlukan di sisa semester agar target IPK tercapai.
+`Smart IPK Tracker` adalah aplikasi single-page (SPA) ringan untuk membantu mahasiswa merencanakan dan memantau IPK (Indeks Prestasi Kumulatif). Aplikasi ini memungkinkan Anda memasukkan atau mengimpor data mata kuliah, mengatur bobot nilai, dan menghitung rata‑rata IPS yang diperlukan di sisa semester agar target IPK tercapai.
 
 - Fitur utama:
    - Simulasi rata‑rata IPS yang diperlukan untuk mencapai target IPK.
@@ -26,3 +26,7 @@
 - Privasi: semua data pengguna disimpan secara lokal di browser. Hanya konfigurasi API (mis. `GEMINI_API_KEY`) yang dimuat dari `.env.local` bila fitur backend/AI digunakan.
 
 - Deploy: proyek dibangun dengan Vite. Gunakan `npm run build` untuk menghasilkan folder `dist` (Output Directory). Untuk platform seperti Vercel, set `Build Command` ke `npm run build` dan `Output Directory` ke `dist`.
+
+
+## Link Demo Aplikasi ini
+https://ipktracker.vercel.app/
