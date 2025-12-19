@@ -8,7 +8,7 @@
 3. Jalankan aplikasi:
    `npm run dev`
 
-## Tentang Smart IPK
+## Tentang Smart IPK Tracker
 
 `Smart IPK Tracker` adalah aplikasi single-page (SPA) ringan untuk membantu mahasiswa merencanakan dan memantau IPK (Indeks Prestasi Kumulatif). Aplikasi ini memungkinkan Anda memasukkan atau mengimpor data mata kuliah, mengatur bobot nilai, dan menghitung rata‑rata IPS yang diperlukan di sisa semester agar target IPK tercapai.
 
